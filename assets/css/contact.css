@@ -1,0 +1,26 @@
+.contact{
+    height: 600px;
+    background: url(../img/contactbg.jpg); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.form-group-h form{
+    display: flex;
+    flex-direction: column;
+}
+.form-group-h form input{
+    border-radius: 4px;
+}
+.form-group-h form textarea{
+    border-radius: 4px;
+}
+.form-group-h form button{
+    margin-top: 10px;
+    width: 100px;
+}
+.form-group-h form label{
+    font-weight: bold;
+    color: var(--color-w);
+}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}BlogHome{% endblock title %}
+{% block blogactive %}active-h{% endblock blogactive %}
+{% block body %}
+<main class="blog-home">
+   
+    <section class="max-width-1-h m-auto-h" >
+        <h1 class="my-2-h f-heading" >Articles By <span >Koding Handle</span></h1>
+          {% for post in allPosts  %}
+              <div class=" my-2-h article">
+                  <h6 class="my-2">By <a href="/about">{{post.author}}</a></h6>
+                  <span class="my-2">{{post.timeStamp}}</span>
+                  <span class="my-2">(<span class="color-red" >{{post.views}} </span>Views)</span>
+                 <h2 class="my-2"> <a   href="/blog/{{post.slug}}" >{{post.title}}</a> </h2>
+                 <p class="my-2-h">{{post.content| safe | truncatechars:200}}</p>
+                 <a  href="/blog/{{post.slug}}" class=" my-2 btn-secondary-h a-secondary-h" role="button" >ReadMore</a>
+              
+                </div>
+
+            {% endfor %}    
+
+                
+
+          
+    </section>
+</main>
+
+{% endblock body %}

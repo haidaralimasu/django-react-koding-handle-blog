@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock title %}
+{% block contactactive %}active-h{% endblock contactactive %}
+{% block body %}
+<main class="contact-main  contact m-auto-h">
+        <div class="form-group-h">
+        
+        <form class="max-width-1-h m-auto-h" action="/contact" method="POST">
+            {% csrf_token %}
+            <h1 class="center-h"><span class="color-red">C</span>ONTACT <span class="color-red" >M</span>E</h1>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="phone">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <label for="content">Message</label>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <button class="my-2-h btn-h" type="submit">Submit</button>
+        </form>
+        </div>
+    </main>
+{% endblock body %}

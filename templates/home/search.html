@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Search: {{query}}{% endblock title %}
+{% block body %}
+<main class="blog-home">
+
+    <section class="max-width-1-h m-auto-h">
+        <h1 class="my-2-h">Results For: <span class="color-red">{{query}}</span></h1>
+
+
+        {% if allPosts|length < 1 %} <p>No search results</p>
+            Your search query : <b>{{query}}</b> did not match any documents. <br>
+            Suggestions:
+            <ul>
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try more general keywords.</li>
+                <li> Try fewer keywords.</li>
+                <li> Try different keywords.</li>
+                </li>
+            </ul>
+
+
+            {% endif %}
+            {% for post in allPosts %}
+            <div class=" my-2-h article">
+                <h6>By <a href="/about">{{post.author}}</a></h6>
+                <span>{{post.timeStamp}}</span>
+                <h2> <a class="color-black" href="/blog/{{post.slug}}">{{post.title}}</a> </h2>
+                <p>{{post.content| truncatechars:500}}</p>
+                <a href="/blog/{{post.slug}}" class="btn-secondary-h a-secondary-h" role="button">ReadMore</a>
+
+            </div>
+
+            {% endfor %}
+
+
+
+
+    </section>
+</main>
+{% endblock body %}

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}BlogPost{% endblock title %}
+{% block body %}
+{% load humanize %}
+{% load static %}
+
+<main class="blog-home">
+
+  <section class="max-width-1-h  m-auto-h">
+    <h1 class=" my-2-h center-h">{{post.title}}</h1>
+    <span>By <a href="/about">{{post.author}}</a></span><br>
+    <span>{{post.timeStamp}}</span>
+    <span>(<span class="color-red" >{{post.views}} </span>Views)</span>
+    <div class="my-2-h"><p>{{post.content|safe}}</p></div>
+    
+      <pre><code>{{post.code}}</code></pre>
+
+      <div class="my-2-h"><p>{{post.conclusion|safe}}</p></div>
+    
+    <hr>
+    <div class="my-2-h add-comments">
+      <h2> Comments ({{comments.count}})</h2>
+      {% if user.is_authenticated %}
+
+      <form action="/blog/postComment" method="POST">
+        {% csrf_token %}
+        <input class="search-h-1" name="comment" type="text" placeholder="Enter your Comment">
+        <input type="hidden" name="postSno" value="{{post.sno}}">
+        <button class="btn-primary-h" type="submit">Add</button>
+      </form>
+      {% else %}
+
+
+      <span>Please <span style="color: red;"> Login </span> To Comment</span>
+
+      <br><button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#loginModal">
+        Login
+      </button>
+
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="color-red modal-title" id="loginModalTitle">Login Here</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="/login">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="loginusername" name="loginusername"
+                    placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <label for="pass">Enter your password </label>
+                  <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                    placeholder="Enter your password ">
+                </div>
+
+                <button type="submit" class="btn btn-dark">Submit</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+
+
+            </ul>
+          </div>
+        </div>
+
+        {% endif %}
+
+      </div>
+      <div class="comments m-auto-h max-width-1-h">
+        {% for comment in comments %}
+
+        <hr>
+        <span style="color:red;" ><b>{{comment.user.username}}</b><br><b>{{comment.timestamp| naturaltime}}</b></span>
+        <p>{{comment.comment}}</p>
+         
+        
+
+
+        
+
+        <hr>
+
+
+
+        {% endfor %}
+
+
+      </div>
+  </section>
+
+
+</main>
+{% endblock body %}

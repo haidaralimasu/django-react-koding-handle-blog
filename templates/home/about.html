@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock title %}
+{% block aboutactive %}active-h{% endblock aboutactive %}
+{% block body %}
+{% load static %}
+
+<main class="about-main m-auto-h" >
+        <section class="max-width-1-h m-auto-h about-section">
+            <h1 class="my-2-h f-heading" >ABOUT <span >ME</span></h1>
+            <img width="200px" height="200px" src="{% static 'img/me.jpeg' %}" alt="">
+            <p style=" color: black; font-size: 32px;" class="h-primary-h center-h" ><span class="color-red" >H</span>aidar</p>
+            <div style="background-color: white;" class="article">
+            <p  class="max-width-2-h m-auto-h center-h" style="color: black;" ><span class="color-red" >Koding Handle</span> is attempt to teach you some amazingg techniques of technology which took me ages to learn. it is free learning resource for you to learn Programming Linux operating system with clear cut concept implementation to</p>
+        </div>
+    </section>
+        
+    </main>
+
+{% endblock body %}
